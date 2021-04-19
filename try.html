@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>BMI calculator</title>
+	<style>
+main{
+	width: 100%;
+	height: 100vh;
+	background-image: linear-gradient(to right, #4568DC, #B06AB3);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+main .form_div{
+	width: 400px;
+	height: 400px;
+	background-image: linear-gradient(to right, #4568DC, #B06AB3);
+	box-shadow: 2px 2px 15px -3px rgba(0,0,0,0.6);
+	border-radius: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+main .form_div form input{
+	height: 25px;
+	outline: none;
+	border: 4px solid #B06AB3;
+	border-radius: 20px;
+	color: #4568DC;
+}
+	</style>
+</head>
+<body>
+	<main>
+		<div class="form_div">
+			<form name="bmiform">
+				<input type="number" placeholder="weight in KG" name="weight"> <br/> <br/>
+				<input type="number" placeholder="height in CM" name="height"> <br/> <br/>
+				<input type="button" style="margin-bottom: 10px;" value="click me" onclick="check()">
+			</form>
+			<label>Your BMI: </label><span id="span1"></span> <br/> <br/>
+			<label>Description: </label><span id="span2"></span>
+		</div>
+</main>
+	<script>
+		function check(){
+			var weight = document.bmiform.weight.value;
+			var height = document.bmiform.height.value;
+			var result = weight/(height/100*height/100);
+			document.querySelector("#span1").innerHTML = Math.floor(result);
+
+			if(result <= 18.5){
+				document.querySelector("#span2").innerHTML = "You Are Underweight";
+				document.querySelector("main").style.background = "url('img2.jpg')";
+
+
+			}
+			else if(result > 18.5 && result < 24.9){
+				document.querySelector("#span2").innerHTML = "Your Weight is normal";
+				document.querySelector("main").style.background = "linear-gradient(to right, #4568DC, #B06AB3)";
+
+			}
+			else if(result > 24.9){
+				document.querySelector("#span2").innerHTML = "You Are overweight";
+				document.querySelector("main").style.background = "url('img1.jpg')";
+
+			}
+			else{
+				alert("Pleace Fill the BMI form properly");
+			}
+		}
+	</script>
+</body>
+</html>
